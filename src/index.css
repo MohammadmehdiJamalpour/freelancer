@@ -1,103 +1,147 @@
 @import "/fonts.css";
 @import "tailwindcss";
 
-/* Make `dark:` work with your `.dark-mode` class (instead of config darkMode) */
+/* Make `dark:` work with your `.dark-mode` class */
 @custom-variant dark (&:where(.dark-mode, .dark-mode *));
 
-/* Map CSS variables -> Tailwind color tokens (opacity supported via <alpha-value>) */
+/* Tailwind v4 theme tokens (store RAW RGB triplets here) */
 @theme {
-  /* fonts */
   --font-sans: "Vazir", ui-sans-serif, system-ui, sans-serif;
 
-  /* primary */
-  --color-primary-900: rgb(var(--color-primary-900) / <alpha-value>);
-  --color-primary-800: rgb(var(--color-primary-800) / <alpha-value>);
-  --color-primary-700: rgb(var(--color-primary-700) / <alpha-value>);
-  --color-primary-600: rgb(var(--color-primary-600) / <alpha-value>);
-  --color-primary-500: rgb(var(--color-primary-500) / <alpha-value>);
-  --color-primary-400: rgb(var(--color-primary-400) / <alpha-value>);
-  --color-primary-300: rgb(var(--color-primary-300) / <alpha-value>);
-  --color-primary-200: rgb(var(--color-primary-200) / <alpha-value>);
-  --color-primary-100: rgb(var(--color-primary-100) / <alpha-value>);
-  --color-primary-50: rgb(var(--color-primary-50) / <alpha-value>);
+  /* primary (RAW RGB triplets) */
+  --color-primary-900: rgb(74 109 255);
+  --color-primary-800: rgb(92 124 255);
+  --color-primary-700: rgb(110 138 255);
+  --color-primary-600: rgb(128 153 255);
+  --color-primary-500: rgb(146 167 255);
+  --color-primary-400: rgb(164 182 255);
+  --color-primary-300: rgb(183 197 255);
+  --color-primary-200: rgb(201 211 255);
+  --color-primary-100: rgb(219 226 255);
+  --color-primary-50: rgb(228 233 255);
 
-  /* secondary */
-  --color-secondary-900: rgb(var(--color-secondary-900) / <alpha-value>);
-  --color-secondary-800: rgb(var(--color-secondary-800) / <alpha-value>);
-  --color-secondary-700: rgb(var(--color-secondary-700) / <alpha-value>);
-  --color-secondary-600: rgb(var(--color-secondary-600) / <alpha-value>);
-  --color-secondary-500: rgb(var(--color-secondary-500) / <alpha-value>);
-  --color-secondary-400: rgb(var(--color-secondary-400) / <alpha-value>);
-  --color-secondary-300: rgb(var(--color-secondary-300) / <alpha-value>);
-  --color-secondary-200: rgb(var(--color-secondary-200) / <alpha-value>);
-  --color-secondary-100: rgb(var(--color-secondary-100) / <alpha-value>);
-  --color-secondary-50: rgb(var(--color-secondary-50) / <alpha-value>);
-  --color-secondary-0: rgb(var(--color-secondary-0) / <alpha-value>);
+  /* secondary (RAW RGB triplets) */
+  --color-secondary-900: rgb(17 24 39);
+  --color-secondary-800: rgb(31 41 55);
+  --color-secondary-700: rgb(55 65 81);
+  --color-secondary-600: rgb(75 85 99);
+  --color-secondary-500: rgb(107 114 128);
+  --color-secondary-400: rgb(156 163 175);
+  --color-secondary-300: rgb(209 213 219);
+  --color-secondary-200: rgb(229 231 235);
+  --color-secondary-100: rgb(243 244 246);
+  --color-secondary-50: rgb(249 250 251);
+  --color-secondary-0: rgb(255 255 255);
 
   /* semantic */
-  --color-success: rgb(var(--color-success) / <alpha-value>);
-  --color-warning: rgb(var(--color-warning) / <alpha-value>);
-  --color-error: rgb(var(--color-error) / <alpha-value>);
-  --color-red-500: rgb(var(--color-red-500) / <alpha-value>);
-  --color-red-300: rgb(var(--color-red-300) / <alpha-value>);
+  --color-success: rgb(0 192 115);
+  --color-warning: rgb(255 153 0);
+  --color-error: rgb(255 71 87);
+
+  /* reds */
+  --color-red-600: rgb(220 38 38);
+  --color-red-500: rgb(239 68 68);
+  --color-red-300: rgb(252 165 165);
 }
 
 @layer base {
   :root,
   :root.light-mode {
-    /* Use space-separated RGB values for best Tailwind v4 opacity support */
     --background-app-rgb: 255 255 255;
-
-    --color-primary-900: 74 109 255;
-    --color-primary-800: 92 124 255;
-    --color-primary-700: 110 138 255;
-    --color-primary-600: 128 153 255;
-    --color-primary-500: 146 167 255;
-    --color-primary-400: 164 182 255;
-    --color-primary-300: 183 197 255;
-    --color-primary-200: 201 211 255;
-    --color-primary-100: 219 226 255;
-    --color-primary-50: 228 233 255;
-
-    --color-secondary-900: 17 24 39;
-    --color-secondary-800: 31 41 55;
-    --color-secondary-700: 55 65 81;
-    --color-secondary-600: 75 85 99;
-    --color-secondary-500: 107 114 128;
-    --color-secondary-400: 156 163 175;
-    --color-secondary-300: 209 213 219;
-    --color-secondary-200: 229 231 235;
-    --color-secondary-100: 243 244 246;
-    --color-secondary-50: 249 250 251;
-    --color-secondary-0: 255 255 255;
-
-    --color-success: 0 192 115;
-    --color-warning: 255 153 0;
-    --color-error: 255 71 87;
-
-    --color-red-500: 239 68 68;
-    --color-red-300: 252 165 165;
   }
 
   :root.dark-mode {
-    --color-secondary-900: 249 250 251;
-    --color-secondary-800: 243 244 246;
-    --color-secondary-700: 229 231 235;
-    --color-secondary-600: 209 213 219;
-    --color-secondary-500: 156 163 175;
-    --color-secondary-400: 107 114 128;
-    --color-secondary-300: 75 85 99;
-    --color-secondary-200: 55 65 81;
-    --color-secondary-100: 31 41 55;
-    --color-secondary-50: 17 24 39;
-    --color-secondary-0: 24 33 47;
+    --background-app-rgb: 24 33 47;
 
-    --backdrop-color: 0 0 0;
+    --color-secondary-900: rgb(249 250 251);
+    --color-secondary-800: rgb(243 244 246);
+    --color-secondary-700: rgb(229 231 235);
+    --color-secondary-600: rgb(209 213 219);
+    --color-secondary-500: rgb(156 163 175);
+    --color-secondary-400: rgb(107 114 128);
+    --color-secondary-300: rgb(75 85 99);
+    --color-secondary-200: rgb(55 65 81);
+    --color-secondary-100: rgb(31 41 55);
+    --color-secondary-50: rgb(17 24 39);
+    --color-secondary-0: rgb(24 33 47);
+
+    --backdrop-color: rgb(0 0 0);
+  }
+
+  html,
+  body {
+    padding: 0;
+    margin: 0;
+    font-family: var(--font-sans);
+    min-height: 100vh;
+    user-select: none;
+    background-color: rgb(var(--background-app-rgb));
+  }
+
+  * {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    outline: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  button {
+    cursor: pointer;
+    outline: none;
+  }
+
+  button:disabled {
+    cursor: default;
+    background-color: rgb(var(--color-secondary-100) / 0.5);
+    pointer-events: none;
+    box-shadow: none;
+  }
+
+  /* input number */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+
+  /* TABLE */
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+  }
+
+  table .title-row {
+    background-color: rgb(var(--color-secondary-100));
+  }
+
+  table td,
+  table th {
+    border-bottom: 1px solid rgb(var(--color-secondary-200));
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  table th {
+    padding: 0.6rem 1rem;
+    color: rgb(var(--color-secondary-600));
+    font-size: 0.9rem;
+  }
+
+  table td {
+    font-size: 0.85rem;
+    padding: 1rem 1rem;
+    color: rgb(var(--color-secondary-600));
   }
 }
 
 /* ------------------- */
-/* react tag input */
+/* third-party (react tag input) */
 /* ------------------- */
 .rti--container {
   background-color: rgb(var(--color-secondary-100));
@@ -121,7 +165,7 @@
 }
 
 /* ------------------- */
-/* components */
+/* components (your @apply classes) */
 /* ------------------- */
 @layer components {
   .textField__input {
@@ -129,7 +173,7 @@
   }
 
   .btn {
-    @apply px-3 py-1 font-bold rounded-xl transition-all duration-300;
+    @apply px-3 py-1 bg-red-600 font-bold rounded-xl transition-all duration-300;
   }
 
   .btn--primary {
@@ -167,78 +211,4 @@
   .badge--danger {
     @apply bg-red-500 text-white;
   }
-}
-
-/* ------------------- */
-/* global base styles */
-/* ------------------- */
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: "Vazir";
-  min-height: 100vh;
-  user-select: none;
-  background-color: rgb(var(--background-app-rgb));
-}
-
-* {
-  box-sizing: border-box;
-  scroll-behavior: smooth;
-  outline: none;
-  padding: 0;
-  margin: 0;
-}
-
-button {
-  cursor: pointer;
-  outline: none;
-}
-
-button:disabled {
-  cursor: default;
-  background-color: rgb(var(--color-secondary-100) / 0.5);
-  pointer-events: none;
-  box-shadow: none;
-}
-
-/* input number */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-input[type="number"] {
-  -moz-appearance: textfield;
-}
-
-/* TABLE */
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-  width: 100%;
-}
-
-table .title-row {
-  background-color: rgb(var(--color-secondary-100));
-}
-
-table td,
-table th {
-  border-bottom: 1px solid rgb(var(--color-secondary-200));
-  text-align: right;
-  white-space: nowrap;
-}
-
-table th {
-  padding: 0.6rem 1rem;
-  color: rgb(var(--color-secondary-600));
-  font-size: 0.9rem;
-}
-
-table td {
-  font-size: 0.85rem;
-  padding: 1rem 1rem;
-  color: rgb(var(--color-secondary-600));
 }
