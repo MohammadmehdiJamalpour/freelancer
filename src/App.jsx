@@ -9,7 +9,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <Toaster/>
-      <div className="container xl:max-w-Screen-xl">
+      <div className="container mx-auto xl:max-w-Screen-xl">
         <Routes>
           <Route path="/auth" element={<Auth/>} />
         </Routes>

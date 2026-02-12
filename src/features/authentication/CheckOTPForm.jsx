@@ -32,12 +32,15 @@ function CheckOTPForm({ phoneNumber, onBack, onReSendOtp, otpResponse }) {
       }
       if (user.role === "OWNER") return navigate("/owner");
       if (user.role === "FREELANCER") return navigate("/freelancer");
-      
     } catch (error) {
       toast.error(error?.response?.data?.message);
     }
   };
+  const handleResendOtp = () => {
+    setTime(Number(RESEND_TIME));
 
+    onReSendOtp();
+  };
   useEffect(() => {
     const timer = time > 0 && setInterval(() => setTime((t) => t - 1), 1000);
 
@@ -47,9 +50,9 @@ function CheckOTPForm({ phoneNumber, onBack, onReSendOtp, otpResponse }) {
   }, [time]);
 
   return (
-    <div>
-      <button onClick={onBack}>
-        <HiArrowRight className="w-6 h-6 text-secondary-500" />
+    <div className="rtl flex flex-col gap-y-6 items-end pt-10">
+      <button onClick={onBack} className="">
+        <HiArrowRight className="w-6 h-6   text-secondary-500" />
       </button>
       {otpResponse && (
         <p className="flex items-center gap-x-2 my-4">
@@ -63,11 +66,13 @@ function CheckOTPForm({ phoneNumber, onBack, onReSendOtp, otpResponse }) {
         {time > 0 ? (
           <p> {time} ثانیه تا ارسال مجدد کد</p>
         ) : (
-          <button onClick={onReSendOtp}>ارسال مجدد کد تایید</button>
+          <button onClick={() => handleResendOtp()}>ارسال مجدد کد تایید</button>
         )}
       </div>
-      <form className="space-y-10" onSubmit={chckOtpHandler}>
-        <p className="font-bold text-secondary-800">کد تایید را وارد کنید</p>
+      <form className="space-y-10 flex flex-col " onSubmit={chckOtpHandler}>
+        <p className="font-bold -  self-end text-secondary-800">
+          کد تایید را وارد کنید
+        </p>
         <OTPInput
           value={otp}
           onChange={setOtp}

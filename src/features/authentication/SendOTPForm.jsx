@@ -4,7 +4,7 @@ import Loading from "../../ui/Loading";
 function SendOTPForm({ onSubmit, isSendingOtp, register }) {
   return (
     <div>
-      <form className="space-y-10 " onSubmit={onSubmit}>
+      <form className="space-y-10" onSubmit={onSubmit}>
         <TextField
           label="شماره موبایل"
           name="phoneNumber"
@@ -14,7 +14,7 @@ function SendOTPForm({ onSubmit, isSendingOtp, register }) {
           {isSendingOtp ? (
             <Loading />
           ) : (
-            <button type="submit" className="btn bg-primary-800 btn--primary w-full">
+            <button type="submit" className="btn btn--primary w-full">
               ارسال کد تایید
             </button>
           )}

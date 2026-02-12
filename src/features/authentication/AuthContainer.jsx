@@ -14,9 +14,9 @@ function AuthContainer() {
   const { handleSubmit, register, getValues } = useForm();
   const { user } = useUser();
 
-  useEffect(() => {
-    if (user) navigate("/", { replace: true });
-  }, [user, navigate]);
+  // useEffect(() => {
+  //   if (user) navigate("/", { replace: true });
+  // }, [user, navigate]);
 
   const {
     isPending: isSendingOtp,
@@ -29,6 +29,7 @@ function AuthContainer() {
   const sendOtpHandler = async (data) => {
     try {
       const { message } = await mutateAsync(data);
+      console.log("request sent");
       setStep(2);
       toast.success(message);
     } catch (error) {
@@ -53,7 +54,7 @@ function AuthContainer() {
       case 2:
         return (
           <CheckOTPForm
-            onReSendOtp={sendOtpHandler}
+            onReSendOtp={handleSubmit(sendOtpHandler)}
             phoneNumber={getValues("phoneNumber")}
             onBack={() => setStep((s) => s - 1)}
             otpResponse={otpResponse}
